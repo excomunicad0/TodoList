@@ -1,9 +1,10 @@
+import type { AxiosError } from 'axios';
 import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AppContext } from '../../app/provider/AppContext';
 import axiosInstance, { setAccessToken } from '../../services/axiosInstance';
-import  { AxiosError } from 'axios';
 import type { User } from '../../entities/User/type/userType';
+import type { RegistrationResponse } from '../../entities/User/type/userResponse';
 
 function RegistrationPage(): JSX.Element {
   const { setUser } = useContext(AppContext);
@@ -24,11 +25,15 @@ function RegistrationPage(): JSX.Element {
     }
 
     try {
-      const response = await axiosInstance.post('/auth/registration', {
-        name,
-        email,
-        password,
-      });
+      const response = await axiosInstance.post<RegistrationResponse>(
+        '/auth/registration',
+        {
+          name,
+          email,
+          password,
+        }
+      );
+
       if (response.status === 201) {
         setUser(response.data.user);
         setAccessToken(response.data.accessToken);
