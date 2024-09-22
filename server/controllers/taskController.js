@@ -22,14 +22,37 @@ exports.getTaskId = async (req, res) => {
 
 exports.createTask = async (req, res) => {
   try {
-    const { title, description, isCompleted } = req.body;
+    const { title, description, isCompleted, userId, categoryId, priorityId } =
+      req.body;
     // add test
     const task = await TaskServices.createTask({
       title,
       description,
       isCompleted,
+      userId,
+      categoryId,
+      priorityId,
     });
     res.status(201).json({ message: 'success', task });
+  } catch ({ message }) {
+    res.status(500).json({ error: message });
+  }
+};
+
+exports.putCompleted = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { isCompleted } = req.body;
+
+    const task = await TaskServices.getTaskById(id);
+    if (task) {
+      res.status(400).json({ message: 'Такой задачи нет' });
+    }
+    console.log(task);
+    
+    task.isCompleted = isCompleted
+    await task.save()
+    res.status(200).json(task)
   } catch ({ message }) {
     res.status(500).json({ error: message });
   }
@@ -57,13 +80,21 @@ exports.putTask = async (req, res) => {
 exports.deleteTask = async (req, res) => {
   try {
     const { id } = req.params;
-    const task = await TaskServices.deleteTask(id);
-    if (task) {
-      res.status(200).json({ message: 'success' }, task);
-      return;
+    const { user } = res.locals;
+
+    const task = await TaskServices.getTaskById(id);
+
+    if (!task) {
+      return res.status(400).json({ message: 'Такой задачи не существует' });
     }
-    res.status(400).json({ message: 'Такой задачи не существует' });
+
+    if (task.userId !== user.id) {
+      return res.status(403).json({ message: 'У тебя нет прав' });
+    }
+
+    await TaskServices.deleteTask(id, user.id);
+    return res.status(200).json({ message: 'success' });
   } catch ({ message }) {
-    res.status(500).json({ error: message });
+    return res.status(500).json({ error: message });
   }
 };

@@ -1,0 +1,22 @@
+.tasks-container {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.tasks-container h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.tasks-container ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.tasks-container li {
+    margin-bottom: 15px;
+}

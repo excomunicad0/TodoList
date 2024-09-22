@@ -5,15 +5,16 @@ import type { User } from '../../entities/User/type/userType';
 type InitStateUser = {
   user: User | undefined;
   setUser: Dispatch<SetStateAction<User | undefined>>;
-  // tasks: Task[];
-  // setTasks: Dispatch<SetStateAction<Task[]>>;
+  tasks: Task[];
+  setTasks: Dispatch<SetStateAction<Task[]>>;
 };
 
 export const initState: InitStateUser = {
   user: undefined,
   setUser: () => {},
-  // tasks: [],
-  // setTasks: () => {},
+  tasks: [],
+  setTasks: () => {},
 };
 
 export const AppContext = createContext(initState);
+  

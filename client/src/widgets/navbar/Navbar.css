@@ -1,58 +1,49 @@
 .nav {
-  background-color: #4a90e2;
+  background-color: white;
   padding: 12px 14px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
 }
 
 .nav h1 {
-    color: white;
-    margin: 0;
-}
-
-.nav p {
-    color: white;
-    margin: 0;
-    font-size: 1.2rem;
-    font-weight: bold;
-}
-
-.nav p:hover {
-    opacity:  0.8;
+  color: #333;
+  margin: 0;
+  font-size: 1.5rem;
 }
 
 .nav ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
 }
 
 .nav-link {
-    margin-right: 30px;
+  margin-right: 30px;
 }
 
 .nav-link a {
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
+  color: #333;
+  text-decoration: none;
+  font-weight: bold;
 }
 
 .nav-link a:hover {
-    color: #ffd700;
+  color: #007bff;
 }
 
 .nav-btn {
-    background-color: #e74c4c;
-    color: white;
-    border: none;
-    padding: 12px 14px;
-    cursor: pointer;
-    border-radius: 5px;
+  background-color: transparent;
+  color: #007bff;
+  border: 2px solid #007bff;
+  padding: 8px 12px;
+  cursor: pointer;
+  border-radius: 5px;
 }
 
 .nav-btn:hover {
-    background-color: #c0392b;
+  background-color: #007bff;
+  color: white;
 }
