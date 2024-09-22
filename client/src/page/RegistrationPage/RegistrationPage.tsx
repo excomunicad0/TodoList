@@ -5,6 +5,8 @@ import { AppContext } from '../../app/provider/AppContext';
 import axiosInstance, { setAccessToken } from '../../services/axiosInstance';
 import type { User } from '../../entities/User/type/userType';
 import type { RegistrationResponse } from '../../entities/User/type/userResponse';
+import './RegistrationPage.css'
+import axios from 'axios';
 
 function RegistrationPage(): JSX.Element {
   const { setUser } = useContext(AppContext);

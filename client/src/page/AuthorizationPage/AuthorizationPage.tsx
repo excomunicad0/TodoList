@@ -4,7 +4,7 @@ import { AppContext } from '../../app/provider/AppContext';
 import { AxiosError, isAxiosError } from 'axios';
 import type { User } from '../../entities/User/type/userType';
 import axiosInstance from '../../services/axiosInstance';
-// import './AuthorizationPage.css';
+import './AuthorizationPage.css';
 
 function AuthorizationPage(): JSX.Element {
   const { setUser } = useContext(AppContext);
@@ -37,7 +37,7 @@ function AuthorizationPage(): JSX.Element {
   };
 
   return (
-    <div>
+    <div className='auth-main'>
       <h1>Авторизация</h1>
       <form onSubmit={handleSubmit}>
         <input
