@@ -4,6 +4,7 @@ import RegistrationPage from '../../page/RegistrationPage/RegistrationPage';
 import AuthorizationPage from '../../page/AuthorizationPage/AuthorizationPage';
 import TasksPage from '../../page/TasksPage/TasksPage';
 import MainPage from '../../page/MainPage/MainPage';
+import CategoriesPage from '../../page/CategoriesPage/CategoriesPage';
 
 function AppRouters(): JSX.Element {
   return (
@@ -12,6 +13,7 @@ function AppRouters(): JSX.Element {
       <Route path='/registration' element={<RegistrationPage />} />
       <Route path='/authorization' element={<AuthorizationPage />} />
       <Route path='/tasks' element={<TasksPage />} />
+      <Route path='/categories' element={<CategoriesPage />} />
     </Routes>
   );
 }

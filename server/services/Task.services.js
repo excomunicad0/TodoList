@@ -9,6 +9,11 @@ class TaskServices {
     return task ? task.get() : null;
   };
 
+  static getAllTaskByUser = async (userId) => {
+    const tasks = await Task.findAll({ where: { userId } });
+    return tasks;
+  };
+
   static getTaskName = async (title) => {
     const task = await Task.findOne({ where: { title } });
     return task ? task.get() : null;
