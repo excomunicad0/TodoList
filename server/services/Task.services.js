@@ -14,28 +14,39 @@ class TaskServices {
     return task ? task.get() : null;
   };
 
-  static createTask = async ({ title, description, isCompleted }) => {
-    const task = await Task.create({ title, description, isCompleted });
+  static createTask = async ({
+    title,
+    description,
+    isCompleted,
+    userId,
+    categoryId,
+    priorityId,
+  }) => {
+    const task = await Task.create({
+      title,
+      description,
+      isCompleted,
+      userId,
+      categoryId,
+      priorityId,
+    });
     return task;
   };
 
-  static updateTask = async (
-    id,
-    userId,
-    { title, description, isCompleted }
-  ) => {
+  static updateTask = async (id, { title, description, isCompleted }) => {
     let task;
-    task = await Task.findOne({ where: { id, userId } });
+    task = await Task.findOne({ where: { id } });
     task = await Task.update(
       { title, description, isCompleted },
-      { where: { id, userId } }
+      { where: { id } }
     );
     task = await Task.findByPk(id);
     return task ? task.get() : null;
   };
 
-  static deleteTask = async (id, userId) => {
-    const task = await Task.findOne({ where: { id, userId } });
+  static deleteTask = async (id) => {
+    const task = await Task.findByPk(id);
+    // task = await Task.findOne({ where: { id, userId } });
     if (task) {
       await task.destroy();
       return true;
