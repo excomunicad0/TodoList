@@ -2,7 +2,9 @@ const TaskServices = require('../services/Task.services');
 
 exports.getTasks = async (req, res) => {
   try {
-    const tasks = await TaskServices.getAllTask();
+    const userId = res.locals.user.id;
+    // const tasks = await TaskServices.getAllTask();
+    const tasks = await TaskServices.getAllTaskByUser(userId);
     res.status(200).json({ message: 'success', tasks });
   } catch ({ message }) {
     console.log(message, 'error tasks get');
@@ -13,7 +15,14 @@ exports.getTasks = async (req, res) => {
 exports.getTaskId = async (req, res) => {
   try {
     const { id } = req.params;
+    const userId = res.locals.user.id;
+
     const task = await TaskServices.getTaskById(id);
+    if (!task || task.userId !== userId) {
+      return res
+        .status(404)
+        .json({ message: 'Задача не найдена или доступ запрещён' });
+    }
     res.status(200).json({ message: 'success', task });
   } catch ({ message }) {
     res.status(500).json({ error: message });
@@ -22,9 +31,10 @@ exports.getTaskId = async (req, res) => {
 
 exports.createTask = async (req, res) => {
   try {
-    const { title, description, isCompleted, userId, categoryId, priorityId } =
+    const { title, description, isCompleted, categoryId, priorityId } =
       req.body;
     // add test
+    const userId = res.locals.user.id;
     const task = await TaskServices.createTask({
       title,
       description,
@@ -49,10 +59,10 @@ exports.putCompleted = async (req, res) => {
       res.status(400).json({ message: 'Такой задачи нет' });
     }
     console.log(task);
-    
-    task.isCompleted = isCompleted
-    await task.save()
-    res.status(200).json(task)
+
+    task.isCompleted = isCompleted;
+    await task.save();
+    res.status(200).json(task);
   } catch ({ message }) {
     res.status(500).json({ error: message });
   }

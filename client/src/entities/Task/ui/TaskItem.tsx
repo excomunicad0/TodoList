@@ -3,7 +3,7 @@
 import axios from 'axios';
 import React, { useContext, useState } from 'react';
 import type { AxiosError } from 'axios';
-import type { Task } from '../type/type';
+import type { Task } from '../type/taskType';
 import { AppContext } from '../../../app/provider/AppContext';
 import ModalWindow from '../../../shared/ui/modal/ModalWindow';
 import TaskFropUp from './TaskFromUp';
@@ -57,17 +57,17 @@ function TaskItem({ task }: TaskItemProps): JSX.Element {
       <h3>{task.description}</h3>
 
       <div className='btn-container'>
-        <button className='update-btn' type='button' onClick={isActive}>
+        {user && <button className='update-btn' type='button' onClick={isActive}>
           Обновить
-        </button>
+        </button>}
         <ModalWindow active={active} setActive={setActive}>
           <TaskFropUp task={task} setActive={setActive} />
         </ModalWindow>
       </div>
 
-      <button className='status-btn' type='button' onClick={toggleStatus}>
+      {user && <button className='status-btn' type='button' onClick={toggleStatus}>
         Статус: {task.isCompleted ? 'Выполнено' : 'Не выполнено'}
-      </button>
+      </button>}
       {user && (
         <button className='delete-btn' type='button' onClick={handleDelete}>
           Удалить

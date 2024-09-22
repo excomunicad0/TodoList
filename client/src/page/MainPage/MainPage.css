@@ -9,7 +9,21 @@
 }
 
 .title {
-    font-size: 6rem;
-    margin: 0;
+  font-size: 6rem;
+  margin: 0;
 }
 
+.guest-message p {
+  font-size: 1.2rem;
+  color: #333;
+}
+
+.link {
+  color: #007bff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.link:hover {
+  text-decoration: underline;
+}

@@ -2,7 +2,7 @@
 /* eslint-disable import/prefer-default-export */
 
 import axiosInstance from '../../../services/axiosInstance';
-import type { Task, TaskWithoutId } from '../type/type';
+import type { Task, TaskWithoutId } from '../type/taskType';
 
 export const addTask = async (task: TaskWithoutId): Promise<Task> => {
   const response = await axiosInstance.post('/tasks', task);

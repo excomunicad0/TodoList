@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useContext, useState } from 'react';
 import type { AxiosError } from 'axios';
-import type { Task } from '../type/type';
+import type { Task } from '../type/taskType';
 import { AppContext } from '../../../app/provider/AppContext';
 import axiosInstance from '../../../services/axiosInstance';
 

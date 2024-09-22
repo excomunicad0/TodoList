@@ -5,14 +5,15 @@ import axios, { AxiosError } from 'axios';
 import React, { useContext, useState } from 'react';
 import { addTask } from '../model/taskServices';
 import { AppContext } from '../../../app/provider/AppContext';
-import { Task } from '../type/type';
+import { Task } from '../type/taskType';
 
 import './styles/TaskFromAdd.css';
 
 function TaskFromAdd(): JSX.Element {
-  const { setTasks, user } = useContext(AppContext);
+  const { setTasks, user, categories } = useContext(AppContext);
   const [title, setTitle] = useState<Task['title']>('');
   const [description, setDescription] = useState<Task['description']>('');
+  // const [selectedCategoryId, setSelectedCategoryId] = useState<number | ''>('');
   const [error, setError] = useState<string | null>(null);
 
   const handleAddSubmit = async (
@@ -26,7 +27,7 @@ function TaskFromAdd(): JSX.Element {
         description,
         isCompleted: false,
         userId: user.id,
-        categoryId: 1,
+        categoryId: 1,  //  Number(selectedCategoryId)
         priorityId: 1,
       });
       setTasks((prev) => [...prev, newTask]);
@@ -59,6 +60,19 @@ function TaskFromAdd(): JSX.Element {
           value={description}
           onChange={(e) => setDescription(e.target.value)}
         />
+
+        {/* <select
+          value={selectedCategoryId}
+          onChange={(e) => setSelectedCategoryId(e.target.value)}
+        >
+          <option value='/'>Выберите категорию</option>
+          {categories.map((category) => (
+            <option key={category.id} value={category.id}>
+              {category.name}
+            </option>
+          ))}
+        </select> */}
+
         <button className='save-btn' type='submit'>
           Сохранить
         </button>
