@@ -4,6 +4,6 @@ const verifyRefreshToken = require('../middleware/verifyRefreshToken');
 
 
 router.get('/refresh', verifyRefreshToken, refreshToken);
-router.post('/logout', logOut)
+router.delete('/logout', logOut)
 
 module.exports = router;

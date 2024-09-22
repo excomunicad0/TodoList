@@ -61,7 +61,7 @@ exports.authorization = async (req, res) => {
         // обязательно в объект
         const { accessToken, refreshToken } = generateTokens({ user });
         res
-          .status(201)
+          .status(200)
           .cookie(jwtConfig.refresh.type, refreshToken, {
             httpOnly: true,
             maxAge: jwtConfig.refresh.expiresIn,
