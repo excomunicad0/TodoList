@@ -1,0 +1,53 @@
+
+.reg-main {
+  background-color: white;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  max-width: 400px;
+  width: 100%;
+  text-align: center;
+  margin-left: 575px;
+  margin-top: 150px;
+}
+
+.reg-main h1 {
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.reg-main input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+
+.reg-main input:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+.reg-main button {
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.reg-main button:hover {
+  background-color: #0056b3;
+}
+
+.reg-main p {
+  color: #e74c4c;
+  margin-top: 15px;
+  font-size: 0.9rem;
+}
